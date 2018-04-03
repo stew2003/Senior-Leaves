@@ -1,0 +1,51 @@
+<!Doctype html>
+<html>
+
+	<head>
+		<title>Student Homepage</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+ 		<link rel="stylesheet" type="text/css" href="main.css">
+	</head>
+
+	<body>
+		<div id="header">
+			<h1>Student Homepage</h1>
+		</div>
+		<div id = "center">
+			<table id="student">
+				<tr id = "tableHead">
+					<th> Name </th>
+					<th> Last Leave Taken </th>
+					<th> # of Leaves </th>
+					<th> {{title}} </th>
+				</tr>
+				<tr id = "info">
+					<td id = "name">{{name}}</td>
+					<td>{{last_leave}}</td>
+					<td>{{num_leaves}}</td>
+					<td>{{#sign_in}}<button id="sign_in"> Sign In </button> {{/sign_in}} {{#sign_out}} <button id="sign_out"> Sign Out </button> {{/sign_out}} {{message}} </td>
+				</tr>
+			</table>
+			<script>
+			 	$(document).ready(function() {
+					var socket = io.connect();
+					var username = "{{name}}";
+
+				 	$('#sign_in').click( function() {
+				  		socket.emit('signin', { name: username });
+					});
+
+					$('#sign_out').click( function() {
+				  		socket.emit('signout', { name: username });
+					});
+
+					socket.on('refresh', function (data) {
+	   					location.reload();
+					});
+				});
+			</script>
+		</div>
+	</body>
+
+</html>

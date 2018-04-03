@@ -1,0 +1,35 @@
+<!Doctype html>
+<html>
+
+	<head>
+		<title>Register</title>
+ 		<link rel="stylesheet" type="text/css" href="main.css">
+	</head>
+
+	<body>
+		<div id="header">
+			<h1>Register For New account</h1>
+		</div>
+		<div id = "center">
+			<form method = "POST", action="/newAccount">
+				<input type='textbox', name='name', placeholder='Name (First and Last)'/>
+				{{#nameError}}
+					<p> {{errorMessage}} </p>
+				{{/nameError}}
+				<input type='textbox', name='username', placeholder='Username'/>
+				<input type='password', name='password', placeholder='Password'/>
+				<input type='password', name='confirmPassword', placeholder='Confrim Password'/>
+				{{#passwordError}}
+					<p> {{errorMessage}} </p>
+				{{/passwordError}}
+				{{#emptyError}}
+					<p> {{errorMessage}} </p>
+				{{/emptyError}}
+				<button type='submit'>Submit</button>
+			</form>
+		</div>
+		<!-- Main.js is "lazy loaded" after all other elements have loaded: -->
+		<!-- <script src="student.js"></script> -->
+	</body>
+
+</html>

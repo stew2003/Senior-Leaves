@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Page</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" language="javascript" src="admin.js"></script>
+	<link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body>
+	<center><h2>Students Currently Signed Out</h2></center>
+	<table id="currently_out">
+		<tr>
+			<th> Name </th>
+			<th> Sign Out Time </th>
+		</tr>
+
+		{{#rows}}
+		<tr id="{{id}}">
+			<td>{{name}}</td>
+			<td>{{signout_time}}</td>
+		</tr>
+		{{/rows}}
+	</table>
+
+	<center><h2>Ban Info</h2></center>
+	<table id="ban_inputs" style="display:none">
+		<tr>
+			<td>Selected Student: <span id="selected_student"></span></td>
+			<td>
+				<select id="month_select">
+					<option value="January">January</option>
+					<option value="February">February</option>
+					<option value="March">March</option>
+					<option value="April">April</option>
+					<option value="May">May</option>
+					<option value="June">June</option>
+					<option value="July">July</option>
+					<option value="August">August</option>
+					<option value="September">September</option>
+					<option value="October">October</option>
+					<option value="November">November</option>
+					<option value="December">December</option>
+				</select>
+			</td>
+			<td><input id="day_select" type="text" placeholder="Day" size="10"></td>
+			<td><input id="year_select" type="text" placeholder="Year" size="10"></td>
+			<td><button id="submit_ban">Submit Ban</button></td>
+		</tr>
+	</table>
+
+	<!-- table for searching students -->
+	<table id="all_students">
+		<tr>
+			<th> Name </th>
+			<th> Banned Until </th>
+			<th> Ban </th>
+		</tr>
+
+		{{#students}}
+		<tr id="{{student_id}}">
+			<td>{{name}}</td>
+			<td>{{ban_until}}</td>
+			<td><button class="ban">BAN</button></td>
+		</tr>
+		{{/students}}
+	</table>
+</body>
+</html>
